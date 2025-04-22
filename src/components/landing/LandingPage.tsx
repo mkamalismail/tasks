@@ -197,9 +197,20 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
             <Target className="h-8 w-8 text-primary-500" />
             <span className="text-xl font-bold text-white ml-2">EMatrix</span>
           </div>
-          <p className="text-center mt-4">
-            © {new Date().getFullYear()} EMatrix. All rights reserved.
-          </p>
+          <div className="text-center mt-4">
+            <p>
+              © {new Date().getFullYear()}{' '}
+              <a 
+                href="https://www.exology.co" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-primary-500 hover:text-primary-400"
+              >
+                Exology
+              </a>
+              . All rights reserved.
+            </p>
+          </div>
         </div>
       </footer>
     </div>

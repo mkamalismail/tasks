@@ -22,15 +22,20 @@ const Footer: React.FC = () => {
           </div>
         </div>
         
-        <div className="flex gap-2 items-center">
-          <div className="h-2 bg-gray-200 rounded-full w-36 sm:w-48">
-            <div 
-              className="h-2 bg-primary-600 rounded-full" 
-              style={{ width: `${completionPercentage}%` }}
-              aria-label={`${completionPercentage}% completed`}
-            ></div>
+        <div className="flex items-center gap-4">
+          <div className="flex gap-2 items-center">
+            <div className="h-2 bg-gray-200 rounded-full w-36 sm:w-48">
+              <div 
+                className="h-2 bg-primary-600 rounded-full" 
+                style={{ width: `${completionPercentage}%` }}
+                aria-label={`${completionPercentage}% completed`}
+              ></div>
+            </div>
+            <span>{completionPercentage}%</span>
           </div>
-          <span>{completionPercentage}%</span>
+          <div className="text-gray-500">
+            © {new Date().getFullYear()} <a href="https://www.exology.co" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-700">Exology</a>
+          </div>
         </div>
       </div>
     </footer>

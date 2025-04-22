@@ -158,6 +158,18 @@ const AuthForm: React.FC<AuthFormProps> = ({ onSuccess, onBack }) => {
               </button>
             </p>
           </form>
+
+          <div className="mt-8 pt-6 border-t text-center text-sm text-gray-500">
+            © {new Date().getFullYear()}{' '}
+            <a 
+              href="https://www.exology.co" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-primary-600 hover:text-primary-700"
+            >
+              Exology
+            </a>
+          </div>
         </div>
       </div>
 
