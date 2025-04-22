@@ -18,9 +18,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
               <span className="text-xl font-bold text-gray-900">EMatrix</span>
             </div>
             <Button
-              variant="outline"
-              size="sm"
+              variant="primary"
+              size="lg"
               onClick={onGetStarted}
+              className="bg-blue-600 hover:bg-blue-700 text-lg px-8"
             >
               Log in
             </Button>
@@ -48,6 +49,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
                   onClick={onGetStarted}
                   icon={<ArrowRight size={20} />}
                   iconPosition="right"
+                  className="bg-blue-600 hover:bg-blue-700 text-lg px-8 py-4"
                 >
                   Get started for free
                 </Button>
@@ -181,6 +183,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
             onClick={onGetStarted}
             icon={<ArrowRight size={20} />}
             iconPosition="right"
+            className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 text-lg px-8 py-4 shadow-lg transform hover:scale-105 transition-all"
           >
             Start organizing today
           </Button>

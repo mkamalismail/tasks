@@ -13,6 +13,12 @@ export enum DateFilter {
   THIS_WEEK = "this_week"
 }
 
+// Calendar view options
+export enum CalendarViewMode {
+  DAY = "day",
+  MONTH = "month"
+}
+
 // View mode options
 export enum ViewMode {
   GRID = "grid",

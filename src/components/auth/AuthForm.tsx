@@ -5,6 +5,7 @@ import useAuthStore from '../../store/authStore';
 
 interface AuthFormProps {
   onSuccess: () => void;
+  onBack: () => void;
 }
 
 const images = [
@@ -25,7 +26,7 @@ const images = [
   }
 ];
 
-const AuthForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
+const AuthForm: React.FC<AuthFormProps> = ({ onSuccess, onBack }) => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -65,11 +66,11 @@ const AuthForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
         <div className="w-full max-w-md">
           <div className="mb-8">
             <button
-              onClick={() => setIsSignUp(!isSignUp)}
+              onClick={onBack}
               className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
             >
               <ArrowLeft size={20} className="mr-2" />
-              Back
+              Back to Home
             </button>
           </div>
 

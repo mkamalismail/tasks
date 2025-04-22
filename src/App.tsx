@@ -26,8 +26,11 @@ const App: React.FC = () => {
 
   if (!user) {
     return (
-      <div className="h-full flex items-center justify-center bg-gray-100">
-        <AuthForm onSuccess={() => setShowAuth(false)} />
+      <div className="h-full">
+        <AuthForm 
+          onSuccess={() => setShowAuth(false)} 
+          onBack={() => setShowAuth(false)}
+        />
       </div>
     );
   }
