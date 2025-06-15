@@ -59,8 +59,10 @@ const CalendarView: React.FC<CalendarViewProps> = ({
       })
       .sort((a, b) => {
         if (a.completed !== b.completed) return a.completed ? 1 : -1;
-        if (!a.dueDate || !b.dueDate) return 0;
-        return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
+        const dateA = a.dueDate ? new Date(a.dueDate).getTime() : Infinity;
+        const dateB = b.dueDate ? new Date(b.dueDate).getTime() : Infinity;
+        if (dateA !== dateB) return dateA - dateB;
+        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
       });
   };
 

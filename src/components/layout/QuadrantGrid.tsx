@@ -275,10 +275,14 @@ const QuadrantGrid: React.FC = () => {
       if (a.quadrant !== b.quadrant) {
         return parseInt(a.quadrant) - parseInt(b.quadrant);
       }
-      // Then by due date if available
-      if (a.dueDate && b.dueDate) {
-        return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
+
+      // Then by due date (tasks without a due date come last)
+      const dateA = a.dueDate ? new Date(a.dueDate).getTime() : Infinity;
+      const dateB = b.dueDate ? new Date(b.dueDate).getTime() : Infinity;
+      if (dateA !== dateB) {
+        return dateA - dateB;
       }
+
       // Finally by creation date
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     });

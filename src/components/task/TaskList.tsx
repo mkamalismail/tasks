@@ -37,30 +37,35 @@ const TaskList: React.FC<TaskListProps> = ({
     borderColor: string,
     bgColor: string,
     hoverBg: string,
+    ringColor: string,
     icon: JSX.Element,
   }> = {
     [Quadrant.URGENT_IMPORTANT]: {
       borderColor: 'border-primary-500',
       bgColor: 'bg-primary-500',
       hoverBg: 'hover:bg-primary-600',
+      ringColor: 'focus:ring-primary-500',
       icon: <Clock size={18} className="text-primary-500" />,
     },
     [Quadrant.NOT_URGENT_IMPORTANT]: {
       borderColor: 'border-secondary-500',
       bgColor: 'bg-secondary-500',
       hoverBg: 'hover:bg-secondary-600',
+      ringColor: 'focus:ring-secondary-500',
       icon: <ListTodo size={18} className="text-secondary-500" />,
     },
     [Quadrant.URGENT_NOT_IMPORTANT]: {
       borderColor: 'border-accent-500',
       bgColor: 'bg-accent-500',
       hoverBg: 'hover:bg-accent-600',
+      ringColor: 'focus:ring-accent-500',
       icon: <CheckCircle2 size={18} className="text-accent-500" />,
     },
     [Quadrant.NOT_URGENT_NOT_IMPORTANT]: {
       borderColor: 'border-error-500',
       bgColor: 'bg-error-500',
       hoverBg: 'hover:bg-error-600',
+      ringColor: 'focus:ring-error-500',
       icon: <Trash2 size={18} className="text-error-500" />,
     }
   };
@@ -131,7 +136,7 @@ const TaskList: React.FC<TaskListProps> = ({
       <div className="p-3 border-t bg-gray-50">
         <button
           onClick={() => onAddTask(quadrantId)}
-          className={`w-full py-2 px-4 rounded-md text-sm font-medium text-white transition-colors ${style.bgColor} ${style.hoverBg} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-${style.borderColor.split('-')[1]}`}
+          className={`w-full py-2 px-4 rounded-md text-sm font-medium text-white transition-colors ${style.bgColor} ${style.hoverBg} focus:outline-none focus:ring-2 focus:ring-offset-2 ${style.ringColor}`}
         >
           Add Task
         </button>
