@@ -36,9 +36,9 @@ const useTaskStore = create<TaskStoreState>()((set, get) => {
 
       // Client-side sorting by dueDate and createdAt
       tasks.sort((a, b) => {
-        // First sort by dueDate
-        const dateA = new Date(a.dueDate).getTime();
-        const dateB = new Date(b.dueDate).getTime();
+        // First sort by dueDate. Tasks without a due date should appear last.
+        const dateA = a.dueDate ? new Date(a.dueDate).getTime() : Infinity;
+        const dateB = b.dueDate ? new Date(b.dueDate).getTime() : Infinity;
         if (dateA !== dateB) return dateA - dateB;
         
         // If dueDates are equal, sort by createdAt
