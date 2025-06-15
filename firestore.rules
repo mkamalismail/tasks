@@ -28,19 +28,19 @@ service cloud.firestore {
       // Allow read if authenticated and user owns the document
       allow read: if isAuthenticated() && isOwner(resource.data.userId);
       
-      // Allow create if authenticated and setting themselves as owner
+      // Allow create if the user is authenticated, email-verified, and setting themselves as owner
       allow create: if isAuthenticated() 
         && isEmailVerified()
         && request.resource.data.userId == request.auth.uid
         && isValidISODate(request.resource.data.createdAt);
       
-      // Allow update if authenticated and user owns the document
+      // Allow update if the user is authenticated, email-verified, and owns the document
       allow update: if isAuthenticated() 
         && isEmailVerified()
         && isOwner(resource.data.userId)
         && request.resource.data.userId == resource.data.userId;
       
-      // Allow delete if authenticated and user owns the document
+      // Allow delete if the user is authenticated, email-verified, and owns the document
       allow delete: if isAuthenticated() 
         && isEmailVerified()
         && isOwner(resource.data.userId);
