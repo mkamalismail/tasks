@@ -27,27 +27,36 @@ const useTaskStore = create<TaskStoreState>()((set, get) => {
       where('userId', '==', userId)
     );
 
-    return onSnapshot(q, (snapshot) => {
-      // Sort tasks by dueDate and createdAt client-side
-      const tasks = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      })) as Task[];
+    return onSnapshot(q, {
+      next: (snapshot) => {
+        // Sort tasks by dueDate and createdAt client-side
+        const tasks = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        })) as Task[];
 
-      // Client-side sorting by dueDate and createdAt
-      tasks.sort((a, b) => {
-        // First sort by dueDate. Tasks without a due date should appear last.
-        const dateA = a.dueDate ? new Date(a.dueDate).getTime() : Infinity;
-        const dateB = b.dueDate ? new Date(b.dueDate).getTime() : Infinity;
-        if (dateA !== dateB) return dateA - dateB;
-        
-        // If dueDates are equal, sort by createdAt
-        const createdAtA = new Date(a.createdAt).getTime();
-        const createdAtB = new Date(b.createdAt).getTime();
-        return createdAtB - createdAtA;
-      });
+        // Client-side sorting by dueDate and createdAt
+        tasks.sort((a, b) => {
+          // First sort by dueDate. Tasks without a due date should appear last.
+          const dateA = a.dueDate ? new Date(a.dueDate).getTime() : Infinity;
+          const dateB = b.dueDate ? new Date(b.dueDate).getTime() : Infinity;
+          if (dateA !== dateB) return dateA - dateB;
 
-      set({ tasks });
+          // If dueDates are equal, sort by createdAt
+          const createdAtA = new Date(a.createdAt).getTime();
+          const createdAtB = new Date(b.createdAt).getTime();
+          return createdAtB - createdAtA;
+        });
+
+        set({ tasks });
+      },
+      error: (error) => {
+        console.error('Error listening to tasks:', error);
+        // Clear tasks if permission is denied to avoid stale state
+        if ((error as { code?: string }).code === 'permission-denied') {
+          set({ tasks: [] });
+        }
+      }
     });
   };
 
